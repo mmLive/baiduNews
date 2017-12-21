@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>百度新闻登录</title>
+    <link rel='stylesheet' href='/bootstrap/dist/css/bootstrap.min.css' />
+    <link rel='stylesheet' href='/css/reset.css' />
+<style>
+    body{
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+    }
+    .header{
+        width: 100%;
+        height: 30px;
+        border-bottom: 1px solid #ebebeb;
+    }
+    .header  ul{
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+    }
+    
+    .header  ul li:first-child {
+      width: 70%;
+       text-align: right;
+    }
+    .header ul li a{
+        font-size: 14px;
+        text-decoration: underline;
+        font-weight: bold;
+        color: #555;
+        display: block;
+        line-height: 30px;
+    }
+    h1{font-size: 30px;
+       color: #3388ff;
+       margin: 50px 500px;
+    }
+    img{
+         width: 230px;
+         height: 90px;
+         margin-bottom: 5px;
+      }
+    .box{
+        width: 500px;
+        padding: 10px;
+        height: 300px;
+        margin: 50px auto;
+        background: rgba(255,255,255,1);
+        box-shadow:0 0 12px 12px rgba(0, 0, 0, .4);
+        border-radius: 5px;
+    }
+    .remind{
+        display: none;
+        color: red;
+        position: absolute;
+        left: 180px;
+        bottom: 10px;
+    }
+ 
+</style>
+</head>
+  <body>
+
+    <div class="header">
+         <ul>
+             <li><a id="news" href='/' target="_black">百度新闻</a></li>  
+             <li><a href="http://www.hao123.com" target="_black">hao123</a></li>
+             <li><a href="http://map.baidu.com" target="_black">地图</a></li>
+             <li><a href="http://v.baidu.com" target="_black">视频</a></li>
+             <li><a href="http://tieba.baidu.com" target="_black">贴吧</a></li>
+             <li><a href="http://xueshu.baidu.com" target="_black">学术</a></li>
+         </ul>
+    </div>
+     <h1 >百度新闻后台管理系统入口</h1>
+
+    <div class="box">
+        <h2 class="text-center"><img src="/img/baidu_logo.png" alt=""></h2>
+        <form class="form-horizontal">
+                <div class="form-group">
+                    <label for="username" name="" class="col-sm-2 control-label">Username</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control"name=""  id="username" placeholder="name">
+                    </div>
+                </div>
+
+                <div class=" form-group">
+                    <label for="pwd" class="col-sm-2 control-label">Password</label>
+                    <div class="col-sm-10">
+                        <input type="password" class="form-control" id="pwd" placeholder="password">
+                    </div>
+                </div>
+ 
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <div class="checkbox">
+                            <label>  
+                                 <!-- 当前实现是 直接登录就设置了cookie  应该选中这个才会设置cookie  这里就不做详细分了   -->
+                                <input type="checkbox" > Remember me
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <button type="submit" id="submitBtn" class="btn btn-default">Sign in</button>
+                        <button type="submit" id="registerBtn" class="btn btn-default">Register</button>
+                        <p class="remind"></p>
+                    </div>
+                </div>
+        </form>
+ 
+    </div>
+  </body>
+  <script type="text/javascript" src='/jquery/dist/jquery.min.js'></script>
+  <script type="text/javascript">
+    $(document).ready(function(){
+
+        //注册
+        $('#registerBtn').click(function(e){
+            e.preventDefault();
+            //输入的用户名和密码不能为空
+            console.log($('#username').val()=='');
+            console.log(123);
+            if($('#username').val()!==''&&$('#pwd').val()!==''){
+                        var json = {
+                        username:$('#username').val(),
+                        password:$('#pwd').val()
+                    }
+                    $.ajax({
+                        url:'/registerUser',
+                        type:'post',
+                        data:json,
+                        success:function(data){
+                        if(data.state=='ok'){
+                            $('.remind').css({"display":"block"}).text(data.message);
+                        }
+                        else{
+                            $('.remind').css({"display":"block"}).text('注册成功,请登录！');
+                            $('#username').val(data.user_name);
+                            $('#pwd').val(data.user_pwd)
+                        }
+                        },
+                        error:function(data){
+                        console.log(data);
+                        }
+                    })
+
+            }else{
+                 $('.remind').css({"display":"block"}).text('用户名和密码都不能为空');
+            }
+           
+
+        })
+
+        // 登录
+        $('#submitBtn').click(function(e){
+            e.preventDefault();
+            if($('#username').val()!==''&&$('#pwd').val()!==''){
+                    var json = {
+                        username:$('#username').val(),
+                        password:$('#pwd').val()
+                    }
+                    $.ajax({
+                        url:'/submitUser',
+                        type:'post',
+                        data:json,
+                        success:function(data){
+                            console.log(data);
+                            if(data.state=='ok'){
+                                // $('.remind').css({"display":"block"}).text(data.message);
+                                //打开已登录的页面
+                                  window.location.href='http://localhost:3000/users/admin';
+                            }
+                            else{
+                               alert(data.message)
+                               window.location.href='http://localhost:3000/login';
+                            }
+                           
+                                // if(data.state=='ok'){
+                                //     $('.remind').css({"display":"block"}).text(data.message);
+                                // }
+                                // else{
+                                //     $('.remind').css({"display":"block"}).text('注册成功,请登录！');
+                                //     $('#username').val(data.user_name);
+                                //     $('#pwd').val(data.user_pwd)
+                                // }
+                         },
+                        error:function(data){
+                        console.log(data);
+                        }
+                    })
+
+            }else{
+                 $('.remind').css({"display":"block"}).text('用户名和密码都不能为空');
+            }
+           
+
+            
+        })
+
+
+
+    })
+  
+
+  </script>
+
+</html>

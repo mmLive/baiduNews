@@ -1,0 +1,248 @@
+html,body{
+  height: 100%;
+}
+/*header*/
+header{
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
+}
+
+
+header ul{
+   width: 100%;
+   height: 48px;
+   border-bottom: 1px solid #5dabf0;
+   background:#3e98f0 url('/img/news.png') no-repeat;
+   background-position: center 10px;
+   background-size: 65px auto;
+   display: flex;
+}
+
+header ul li a{
+  width: 34px;
+  height: 100%;
+  display: inline-block;
+  background: url('/img/bdnews_toolbar.png') no-repeat;
+  background-size: 40px 500px;
+}
+
+header ul li:first-of-type a{
+  background-position: center 6px;
+  margin-left: 8px;
+}
+header ul li:nth-of-type(2) a{
+  background-position: center -461px;
+  margin-left: 10px;
+}
+header ul li:nth-of-type(3) a{
+  background-position: center -160px;
+  /* margin-right: 10px;   */
+  position: absolute;
+  right: 52px;
+  top: 0;
+}
+header ul li:nth-of-type(4) a{
+  background-position: center -105px;
+  /* margin-right: 8px;   */
+  position: absolute;
+  right: 8px;
+  top: 0;
+}
+
+/* nav */
+nav{
+  width: 100%;
+  position: fixed;
+  top: 49px;
+  left: 0;
+  z-index: 3;
+  background: #3e98f0;
+}
+/* 左右两侧分别有个定位的颜色渐变的遮盖层 */
+nav .l-wrap{ 
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 25px;
+  height: 40px;
+  z-index: 100;
+  background-image: linear-gradient(to right,#3e98f0 0,rgba(62,152,240,0) 100%);
+}
+
+nav .r-wrap{
+  position: absolute;
+  right: 45px;
+  top: 0;
+  width: 25px;
+  height: 40px;
+  background-image: linear-gradient(to left,#3e98f0 0,rgba(62,152,240,0) 100%);
+  z-index:  100;
+}
+nav .more{
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 16px;
+  height: 16px;
+  display: block;
+  padding: 12px 17px 12px 12px;
+  background: #3e98f0 ;
+}
+
+nav .more i{
+  width: 16px;
+  height: 16px;
+  display: block;
+  background: url('/img/nav.png') no-repeat -16px -16px;
+  background-size: 32px;
+}
+
+
+/* 实现导航左右滑动方法2 但是这种方法写js比较麻烦*/
+nav .list {
+  /* width: 100%; */
+  padding: 0 5px;
+  /* display: inline; */
+  /* float: left; */
+  white-space: nowrap;
+  overflow-x: auto;
+  /* overflow-y: hidden; */
+  -webkit-overflow-scrolling: touch; 
+  
+  /* 解决在ios滑动不顺畅问题 */
+}
+nav .list li {
+  display: inline-block; 
+  height: 40px;
+  line-height: 40px;
+  color: #c2daf8;
+  padding: 0 4px;
+  margin: 0 16px;
+  font-size: 14px;
+}    
+nav .list li:last-of-type{
+  margin-right: 60px;
+}
+nav ul::-webkit-scrollbar {
+  display: none;    
+}
+/* 隐藏滚动条功能 */
+nav .list p{
+  height: 40px;
+  width: 100%;
+  display: none;
+  line-height: 40px;
+  padding-left: 20px;
+  color: #c2daf8;
+}
+ #cover{
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  background: rgba(0, 0, 0,0.6);
+  display: none;
+}
+
+/* 选项卡样式 */
+nav  .list  li.active{
+  color: #fff!important;
+  border-bottom: 2px solid #fff!important;
+  height: 38px!important;
+}
+
+/* main section  */
+section{
+  margin-top: 90px;
+  width: 100%;
+  flex: 1;
+  overflow: auto;
+}
+section>div{
+  display: none;
+  width: 100%;
+  height: 100%;
+}
+section>div.active{
+  display: block;
+}
+section .swiper-container{
+  width: 100%;
+  height: 180px;
+  position: relative;
+}
+
+section .myswiper img{
+  width: 100%;
+  height: 180px;
+}
+section .swiper-container .swiper-title{
+   position: absolute;
+   left: 10px;
+   bottom: 5px;
+   font-size: 15px;
+   color: #fff;
+   z-index: 3;
+}
+section dl{
+  width: 100%;
+  box-sizing: border-box;
+  padding:8px 17px 10px;
+  overflow: hidden;
+}
+section dl dt{
+  width: 33.3%;
+  float: left;
+}
+section dl dt img{
+  width: 100%;
+}
+
+section dl dd{
+  width: 66%;
+  float: left;
+  padding: 6px;
+  box-sizing: border-box;
+}
+section dl dd h6{
+  font-size: 14px;
+  color: #999;
+  font-weight: normal;
+  line-height: 20px;
+}
+/* section dl dd b */
+section  b{
+  font-size: 12px;
+  color: #999;
+  margin-top: 5px;
+}
+section dl dd  i{
+  font-style: normal;
+  color: #f02626;
+  border: 1px solid red;
+  margin-left: 5px;
+  font-size: 10px;
+}
+
+/* 头部标题 下面三张图片样式 */
+.pic3{
+  width: 100%;
+  box-sizing: border-box;
+  padding:8px 17px 10px;
+  overflow: hidden;
+}
+.pic3 h5{
+  margin: 5px 0;
+  color: #333;
+  font-size: 14px;
+  font-weight: normal;
+}
+.pic3 img{
+  width: 32%;
+  height: 50px;
+}

@@ -1,0 +1,144 @@
+body{
+    background: rgb(255, 255, 255);
+}
+.header{
+    height: 46px;
+    border-bottom: 1px solid #cecece;
+    line-height: 46px;
+    overflow: hidden;
+    position: relative;
+    /* background: #c8d4e5; */
+}
+h1{
+    width: 160px;
+    height: 46px;
+    background: #fff;
+    margin: 0;padding: 0;
+}
+
+h1 a img{
+    width: 110px;
+    margin-left: 25px;
+}
+
+.header h2{
+    /* color: #fff; */
+    line-height: 46px;
+    margin:0;
+    font-size: 20px;
+    font-weight: 600;
+    margin-left: 15px;
+}
+
+.header h3{
+    font-size: 14px;
+    font-weight: normal;
+    color: #555;
+    line-height: 46px;
+    margin: 0;
+    position: absolute;
+    right: 150px;
+    top: 0;
+ 
+}
+a:hover{text-decoration: none;}
+.header h3 a{
+    font-size: 14px;
+    text-decoration: underline;
+    color: #6639cf;
+}
+.header>a{
+    color: #555;
+    font-size: 14px;
+    line-height: 46px;
+    position: absolute;
+    right:110px;
+    top: 0;
+    text-decoration: underline;
+}
+
+
+/* container */
+.main{
+    margin-top: 15px;
+    margin-left: 30px;
+    overflow: hidden;
+}
+.p-left{
+    width: 30%;
+    float:left;
+}
+.p-right{
+    width: 67%;
+    float:left;
+    margin-left: 25px;
+}
+.p-left h3 span{
+    margin-top: 5px;
+    float: right;
+    margin-right: 20px;
+    font-size: 10px;
+    /* color: #fff; */
+    cursor: pointer;
+}
+.panel-heading{
+    padding: 8px 10px;
+}
+.heading{
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.form-horizontal .font {
+    text-align: center;
+    font-size:14px;
+    font-weight: 600; 
+    font-family: '新宋体';
+}
+.p-left button{
+    margin-top: 10px;
+    margin-left: 30px;
+    width: 50px;
+    height: 30px;
+    line-height: 30px;
+    padding: 0!important;
+    font-size: 14px!important;
+}
+
+
+/* right panel */
+table{
+    table-layout: fixed;
+  }
+  table tr th{
+    overflow: hidden;
+    text-align: center;
+    font-size: 12px;
+    background: #e3e2e9;
+ text-overflow: ellipsis;
+     font-weight: normal;
+ }
+  table tr td{
+     overflow: hidden;
+     text-align: center;
+     white-space: nowrap;
+     text-overflow: ellipsis;
+     padding: 10px!important;
+     font-size: 13px;
+     color: #767676;
+     line-height:20px;
+  }
+  table tr td:last-of-type{
+    /* padding: 5!important; */
+    padding: 0!important;
+  }
+  table button{
+      padding: 0!important;
+      width: 40px;
+      height: 25px;
+      line-height: 25px;
+      margin-right: 5px;
+      margin-top: 6px;
+      font-size: 12px!important;
+    text-align: center;
+  }

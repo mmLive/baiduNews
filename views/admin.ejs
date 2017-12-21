@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+  <head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>后台管理页面</title>
+    <link rel='stylesheet' href='/css/reset.css' />
+    <link rel='stylesheet' href='/bootstrap/dist/css/bootstrap.min.css' />
+    <link rel='stylesheet' href='/css/admin.css' />
+    <!-- 分页插件 -->
+   
+  </head>
+  <body>
+    
+  <!-- header -->
+    <div class="header">
+       <h1 class="fl"><a href="/" target="_black"> <img src="/img/news_logo.png" alt=""></a></h1>
+       <h2 class="fl">百度新闻后台管理系统</h2>
+       <% if(typeof user !=='undefined' && user){%>
+        <h3>您好！<a href="#"><%=user.username%></a></h3>
+    <!-- 如果是那种不登录可以查看的页面时 可以通过else 写一个 请登录 的标识在页面 -->
+        <a href="/logout">退出</a>
+       <% } %>
+    </div>
+
+<!-- main -->
+    <div class="main container-fluid ">
+        <div class="p-left panel panel-info">
+            <div class="panel-heading">
+                    <h3 class="heading panel-title">新闻发布 <span>&lt;&lt;</span></h3>
+            </div>
+            <div class="p-body panel-body"> 
+                <form class="form-horizontal">
+                    <div class="form-group">
+                        <label for="category" class="col-sm-2 control-label font">类别</label>
+                        <div class="col-sm-10">
+                                <select id="category" class="form-control" >
+                                        <option value="推荐">推荐</option>
+                                        <option value="百家">百家</option>
+                                        <option value="本地">本地</option>
+                                        <option value="娱乐">娱乐</option>
+                                        <option value="社会">社会</option>
+                                        <option value="军事">军事</option>
+                                        <option value="女人">女人</option>
+                                        <option value="搞笑">搞笑</option>
+                                        <option value="互联网">互联网</option>
+                                </select>
+                        </div>
+                    </div>
+                    <div class=" form-group">
+                        <label for="title" class="font col-sm-2 control-label ">标题</label>
+                        <div class="col-sm-10">
+                            <input type="text" id="title"  class="form-control" placeholder="请输入新闻标题">
+                        </div>
+                    </div>
+                    <div class=" form-group">
+                            <label for="content" class="font col-sm-2 control-label">内容</label>
+                            <div class="col-sm-10">
+                                <textarea  id="content" class="form-control" rows="3" placeholder="请输入新闻内容"></textarea>
+                            </div>
+                        </div>  
+                        <div class=" form-group">
+                                <label for="source" class="font col-sm-2 control-label">来源</label>
+                                <div class="col-sm-10">
+                                    <input type="text"  id="source" class="form-control" placeholder="请输入新闻来源">
+                                </div>
+                        </div>
+                        <div class=" form-group">
+                                <label for="tag" class="font col-sm-2 control-label">标记</label>
+                                <div class="col-sm-10">
+                                    <input type="text" id="tag"  class="form-control" placeholder="请输入新闻标记">
+                                </div>
+                        </div>
+                        <div class=" form-group">
+                                <label for="img" class="font col-sm-2 control-label">图片</label>
+                                <div class="col-sm-10">
+                                    <input type="text"id="img"  class="form-control" placeholder="请输入图片地址">
+                                </div>
+                        </div>
+                        <div class=" form-group">
+                                <label for="time" class="font col-sm-2 control-label">时间</label>
+                                <div class="col-sm-10">
+                                    <input type="date" id="time"  class="form-control" >
+                                </div>
+                        </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <button id='submitBtn' type="submit" class="btn btn-primary">提交</button>
+                            <button id='saveBtn' type="submit" class="btn btn-success">保存</button>
+                            <input type="reset" hidden="hidden">
+                        </div>
+                    </div>
+                </form>
+           </div>  <!-- panel-body -->
+    
+        </div> <!-- left panel end-->
+        
+        <div class="p-right panel panel-info">
+            <div class="panel-heading">
+              <h3 class="heading panel-title">新闻管理</h3>
+            </div>
+            <div class="panel-body">
+                    <div class="col-sm-offset-3 col-sm-3">
+                            <select id="search" class="form-control" >
+                                    <option value="全部">全部</option>
+                                    <option value="推荐">推荐</option>
+                                    <option value="百家">百家</option>
+                                    <option value="本地">本地</option>
+                                    <option value="娱乐">娱乐</option>
+                                    <option value="社会">社会</option>
+                                    <option value="军事">军事</option>
+                                    <option value="女人">女人</option>
+                                    <option value="搞笑">搞笑</option>
+                                    <option value="互联网">互联网</option>
+                            </select>
+                    </div>
+                    <button id='searchBtn' class="btn btn-info">百度一下</button>
+       
+            </div>
+            <table  class="table table-bordered table-striped table-hover">
+                    <colgroup>
+                        <col width="5%" ></col>
+                        <col width="8%" ></col>
+                        <col width="15%" ></col>
+                        <col width="20%" ></col>
+                        <col width="10%" ></col>
+                        <col width="7%" ></col>
+                        <col width="10%" ></col>
+                        <col width="10%" ></col>
+                        <col width="15%" ></col>
+                    </colgroup>
+                    <thead>
+                            <tr >
+                              <th >编号</th>
+                              <th >类别</th>
+                              <th >标题</th>
+                              <th >内容</th>
+                              <th >来源</th>
+                              <th >标记</th>
+                              <th >图片</th>
+                              <th >时间</th>
+                              <th >操作</th>
+                            </tr>
+                    </thead>   
+                    <tbody >
+                        <!-- use module -->
+                            <!-- <tr>
+                                <td id="newsId">1</td>
+                                <td >推荐</td>
+                                <td >迪</td>
+                                <td >迪丽热</td>
+                                <td >新浪微博</td>
+                                <td >热点</td>
+                                <td >https:/.jpg</td>
+                                <td >2017-12-01</td>
+                                <td><button  class="update btn btn-info">修改</button><button class='del btn btn-danger' >删除</button></td>
+                            </tr> -->
+                           
+                    </tbody>  
+                   
+            </table>
+        
+          
+          </div>
+          
+    </div>   <!-- container-fluid-->
+   
+
+    
+  </body>
+  <script type="text/javascript" src='/jquery/dist/jquery.min.js'></script>
+  <script src="/bootstrap/dist/js/bootstrap.min.js"></script>
+  <script src="/js/admin.js"></script>
+  <!-- 分页插件 -->
+ 
+</html>
